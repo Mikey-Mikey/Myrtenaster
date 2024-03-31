@@ -659,7 +659,7 @@ function SWEP:SecondaryAttack()
 	if SERVER then
 		if self.ActiveDust == "Ice" then
 			if not self.Owner:IsOnGround() then return end
-			self:EmitSound("Myrtenaster/IceSpikes.wav", 75, 100, 0.5, CHAN_AUTO)
+			sound.Play("Myrtenaster/IceSpikes.wav", self.Owner:GetPos(), 75, 100, 0.5, CHAN_AUTO)
 			timer.Create("MyrtenasterIceSpike" .. self:EntIndex(), 0.5, 1, function()
 				local spike_line = ents.Create("rwby_icespike_line")
 				spike_line:SetPos(self.Owner:GetPos() + (self.Owner:GetAimVector() * Vector(1,1,0)):GetNormalized() * 128)

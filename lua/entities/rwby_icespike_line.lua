@@ -18,16 +18,19 @@ function ENT:Initialize()
     self.spike_normal = Vector(0, 0, 1)
 
     self:CreateTimer("Spawn Spike" .. self:EntIndex(), 0.05, 10, function()
+        local ply_filter = function(e)
+                return e:IsPlayer() or e == self
+        end
         local spike_tr = util.TraceLine({
             start = self.spike_pos + self.spike_normal * 50,
             endpos = self.spike_pos + self.direction * 100 + self.spike_normal * 50,
-            filter = self
+            filter = ply_filter
         })
         if not spike_tr.Hit or spike_tr.StartSolid then
             spike_tr = util.TraceLine({
                 start = self.spike_pos + self.direction * 50 + self.spike_normal * 100,
                 endpos = self.spike_pos + self.direction * 50 - self.spike_normal * 100,
-                filter = self
+                filter = ply_filter
             })
         end
 
@@ -35,7 +38,7 @@ function ENT:Initialize()
             spike_tr = util.TraceLine({
                 start = self.spike_pos + self.direction * 50 + self.spike_normal * 100,
                 endpos = self.spike_pos - self.direction * 175 - self.spike_normal * 100,
-                filter = self
+                filter = ply_filter
             })
         end
         if spike_tr.Hit then
@@ -50,7 +53,7 @@ function ENT:Initialize()
     end)
     local dir = self.direction
     self:CreateTimer("MyrtenasterIceSpikeMelt", 5, 1, function()
-        EmitSound("Myrtenaster/IceSpikesMelt.wav", self:GetPos() + dir * 250, 75, 125, 0.4, CHAN_AUTO)
+        sound.Play("Myrtenaster/IceSpikesMelt.wav", self:GetPos() + dir * 250, 75, 125, 0.4, CHAN_AUTO)
     end)
 end
 
@@ -78,9 +81,11 @@ function ENT:SpawnSpike(pos, ang) -- perform the spike spawn code here
 end
 
 function ENT:OnRemove()
-    for k, v in pairs(self.spikes) do
-        if IsValid(v) then
-            v:Remove()
+    if SERVER then
+        for k, v in pairs(self.spikes) do
+            if IsValid(v) then
+                v:Remove()
+            end
         end
     end
 end
