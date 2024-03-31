@@ -1,0 +1,19 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/rwby/icespike/ice_overlay"
+	"$bumpmap" "models/rwby/icespike/ice_overlay_nrm"
+	"$normalmap" "models/rwby/icespike/ice_overlay_nrm"
+	"$surfaceprop" "ice"
+        "$envmap" "env_cubemap" 
+        "$envmaptint" "[1 1 1]"
+	"$phong"		"1"
+	"$phongexponent"	"6"
+	"$phongboost"	"1"
+	"$phongtint"	"{125 185 200}"
+	"$normalmapalphaenvmapmask" 1
+	"$envmapcontrast" 0
+	"$alpha" 0.7
+	"$alphatest" 1
+	"$envmapsaturation" 2
+
+}
