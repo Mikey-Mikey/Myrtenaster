@@ -1,0 +1,15 @@
+"vertexlitgeneric"
+{
+	"$baseTexture"	"models/rwby/myrtenaster/barrel_occlusion"
+	"$bumpmap"	"models/rwby/myrtenaster/barrel_nrm"
+
+	"$phongalbedotint" "1"
+	"$phongexponenttexture" "models/rwby/rose/green"
+
+	"$halflambert" "0"
+	"$phongfresnelranges"	"[0.3 0.7 1.5]"
+
+	"$phong"				"1"
+	"$phongexponent"			"4"
+	"$phongboost"			"40"
+}
